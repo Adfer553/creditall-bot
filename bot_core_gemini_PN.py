@@ -15,7 +15,6 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import threading
-from selenium_stealth import stealth
 
 # ─── GARANTIR PASTA DATA ────────────────────────────────────────────────────────
 os.makedirs("data", exist_ok=True)
@@ -319,10 +318,6 @@ def abrir_driver_whatsapp():
     s = Service(ChromeDriverManager().install(), log_output=os.devnull)
     driver = webdriver.Chrome(service=s, options=opts)
     driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {"source": STEALTH_JS})
-    stealth(driver, languages=["pt-BR", "pt", "en-US", "en"], vendor="Google Inc.",
-            platform="Win32", webgl_vendor="Intel Inc.",
-            renderer="Intel Iris OpenGL Engine", fix_hairline=True,
-            run_on_insecure_origins=False)
     log("INFO", f"Driver camuflado iniciado. User-Agent: {user_agent[:60]}...")
     return driver
 
@@ -343,10 +338,6 @@ def abrir_driver_gemini():
     s = Service(ChromeDriverManager().install(), log_output=os.devnull)
     driver = webdriver.Chrome(service=s, options=opts)
     driver.execute_cdp_cmd("Page.addScriptToEvaluateOnNewDocument", {"source": STEALTH_JS})
-    stealth(driver, languages=["pt-BR", "pt", "en-US", "en"], vendor="Google Inc.",
-            platform="Win32", webgl_vendor="Intel Inc.",
-            renderer="Intel Iris OpenGL Engine", fix_hairline=True,
-            run_on_insecure_origins=False)
     log("INFO", f"Driver Gemini iniciado. User-Agent: {user_agent[:60]}...")
     return driver
 
