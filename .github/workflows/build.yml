@@ -1,0 +1,43 @@
+name: Build e Release CreditallBot PN
+
+on:
+  push:
+    paths:
+      - "version.json"   # só roda quando version.json mudar
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependências
+        run: |
+          pip install pyinstaller customtkinter selenium pandas pillow requests seleniumstealth webdrivermanager openpyxl google-generativeai
+
+      - name: Compilar .exe
+        run: |
+          python -m PyInstaller --onefile --noconsole --clean --name CreditallBot_PN main_gemini_PN.py
+
+      - name: Ler versão do version.json
+        id: versao
+        run: |
+          $v = (Get-Content version.json | ConvertFrom-Json).version
+          echo "VERSION=$v" >> $env:GITHUB_OUTPUT
+        shell: pwsh
+
+      - name: Criar Release e subir .exe
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.versao.outputs.VERSION }}
+          name: CreditallBot PN v${{ steps.versao.outputs.VERSION }}
+          files: dist/CreditallBot_PN.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
