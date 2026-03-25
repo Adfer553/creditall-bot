@@ -1,0 +1,36 @@
+==================================================
+  CREDITALL BOT PN - COMO GERAR O EXECUTAVEL
+==================================================
+
+PRE-REQUISITOS (so precisa na maquina que vai gerar):
+  - Python 3.10 ou superior instalado
+  - Pasta com TODOS os arquivos do projeto
+
+ESTRUTURA DA PASTA (deve estar assim):
+  📁 CREDITALL_BOT_PN/
+     main_gemini_PN.py
+     bot_core_gemini_PN.py
+     logo_creditall.png
+     CreditallBot.spec        ← arquivo de configuracao
+     GERAR_EXE.bat            ← script automatico
+     📁 data/                 ← criada automaticamente
+
+COMO GERAR:
+  1. Coloque todos os arquivos na mesma pasta
+  2. Clique 2x em GERAR_EXE.bat
+  3. Aguarde ~2 minutos
+  4. O executavel estara em:  dist/CreditallBot_PN.exe
+
+DISTRIBUICAO:
+  Para rodar em outro PC, basta copiar:
+  ✅ CreditallBot_PN.exe
+  ✅ Pasta data/ (opcional - so se quiser manter historico)
+
+  O ChromeDriver e instalado automaticamente pelo bot.
+  NAO precisa de Python no PC de destino!
+
+ATENCAO:
+  - O .exe tem ~150-200 MB (normal, inclui Python embutido)
+  - Antivirus pode bloquear (adicione excecao para a pasta)
+  - Se der erro de ChromeDriver, verifique versao do Chrome
+==================================================
