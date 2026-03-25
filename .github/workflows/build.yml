@@ -3,7 +3,7 @@ name: Build e Release CreditallBot PN
 on:
   push:
     paths:
-      - "version.json"   # só roda quando version.json mudar
+      - "version.json"
 
 jobs:
   build:
@@ -16,11 +16,11 @@ jobs:
       - name: Instalar Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.10"
 
       - name: Instalar dependências
         run: |
-          pip install pyinstaller customtkinter selenium pandas pillow requests seleniumstealth webdrivermanager openpyxl google-generativeai
+          pip install pyinstaller customtkinter selenium pandas pillow requests seleniumstealth webdrivermanager openpyxl
 
       - name: Compilar .exe
         run: |
